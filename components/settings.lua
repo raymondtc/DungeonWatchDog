@@ -64,20 +64,39 @@ options = {
                         WATCHDOG_DB.versionMessageToggle = t
                     end
                 },
-                portalShareCount = {
+                portalSep = {
                     name = ' ',
                     type = 'description',
                     order = 6,
                 },
+                portalToggle3 = {
+                    name = L.SETTINGS_PORTAL_TOGGLE3_NAME,
+                    desc = L.SETTINGS_PORTAL_TOGGLE3_DESC,
+                    type = 'toggle',
+                    order = 7,
+                    width = '0.5',
+                    tristate = false,
+                    get = function (info)
+                        return (WATCHDOG_DB.quickIgnoringToggle and true) or false
+                    end,
+                    set = function (info, t)
+                        WATCHDOG_DB.quickIgnoringToggle = t
+                    end
+                },
+                portalShareCount = {
+                    name = ' ',
+                    type = 'description',
+                    order = 8,
+                },
                 portalStatusAll = {
                     name = ' ',
                     type = 'description',
-                    order = 7,
+                    order = 9,
                 },
                 portalVersion = {
                     name = ' ',
                     type = 'description',
-                    order = 8,
+                    order = 10,
                 },
             },
         },

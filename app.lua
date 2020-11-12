@@ -81,6 +81,32 @@ local replaceNativeUtilWithMenu = function()
     end
 end
 
+local registerQuickIgnoring = function()
+    local function OnClick(self, button)
+
+        if not WATCHDOG_DB.quickIgnoringToggle then
+            return
+        end
+
+        local alt_key = IsAltKeyDown()
+
+        if button == "LeftButton" then
+            if alt_key then
+                Actions:banPlayerWithID(self.resultID)
+            end
+        end
+    end
+    
+    for _, button in pairs(LFGListFrame.SearchPanel.ScrollFrame.buttons) do
+        _superOnClick = button:GetScript("OnClick")
+        button:SetScript("OnClick", function (self, button)
+                OnClick(self, button)
+                _superOnClick(self, button)
+            end
+        )
+    end
+end
+
 function addon:OnInitialize()
     local f = CreateFrame('Frame')
     f:RegisterEvent('ADDON_LOADED')
@@ -106,4 +132,5 @@ function addon:OnEnable()
 
     replaceNativeUtilWithMenu()
     replaceSearchResult()
+    registerQuickIgnoring()
 end

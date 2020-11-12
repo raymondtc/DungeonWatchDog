@@ -12,6 +12,7 @@ function Init:getDefaultSettings()
         shareGuildToggle = true,
         shareLimit = 500,
         ignoreTimeLimit = 259200,
+        quickIgnoringToggle = false,
     }
 end
 
